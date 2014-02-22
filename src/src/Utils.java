@@ -6,8 +6,8 @@ public class Utils {
     /**
      * Exchanges the values of the two given indexes in the given array.
      */
-    public static void exchange(int[] arr, int i, int j) {
-        int temp = arr[i];
+    public static void exchange(HeapNode[] arr, int i, int j) {
+        HeapNode temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }

@@ -53,7 +53,7 @@ public class RedBlackTree {
                     current.left : current.right;
 
             // Check if two red children; fix if so
-            if( current.left.color == RED && current.right.color == RED )
+            if( current.left.color == Consts.RED && current.right.color == Consts.RED )
                 handleReorient( item );
         }
 
@@ -175,20 +175,20 @@ public class RedBlackTree {
      */
     private void handleReorient( Comparable item ) {
         // Do the color flip
-        current.color = RED;
-        current.left.color = BLACK;
-        current.right.color = BLACK;
+        current.color = Consts.RED;
+        current.left.color = Consts.BLACK;
+        current.right.color = Consts.BLACK;
 
-        if( parent.color == RED )   // Have to rotate
+        if( parent.color == Consts.RED )   // Have to rotate
         {
-            grand.color = RED;
+            grand.color = Consts.RED;
             if( ( compare( item, grand ) < 0 ) !=
                     ( compare( item, parent ) < 0 ) )
                 parent = rotate( item, grand );  // Start dbl rotate
             current = rotate( item, great );
-            current.color = BLACK;
+            current.color = Consts.BLACK;
         }
-        header.right.color = BLACK; // Make root black
+        header.right.color = Consts.BLACK; // Make root black
     }
 
     /**
@@ -199,7 +199,7 @@ public class RedBlackTree {
      * @param parent the parent of the root of the rotated subtree.
      * @return the root of the rotated subtree.
      */
-    private RedBlackNode rotate( Comparable item, RedBlackNode parent ) {
+    public RedBlackNode rotate( Comparable item, RedBlackNode parent ) {
         if( compare( item, parent ) < 0 )
             return parent.left = compare( item, parent.left ) < 0 ?
                     rotateWithLeftChild( parent.left )  :  // LL
@@ -230,25 +230,6 @@ public class RedBlackTree {
         return k2;
     }
 
-    private static class RedBlackNode {
-        // Constructors
-        RedBlackNode( Comparable theElement ) {
-            this( theElement, null, null );
-        }
-
-        RedBlackNode( Comparable theElement, RedBlackNode lt, RedBlackNode rt ) {
-            element  = theElement;
-            left     = lt;
-            right    = rt;
-            color    = RedBlackTree.BLACK;
-        }
-
-        Comparable   element;    // The data in the node
-        RedBlackNode left;       // Left child
-        RedBlackNode right;      // Right child
-        int          color;      // Color
-    }
-
     private RedBlackNode header;
     private static RedBlackNode nullNode;
     static         // Static initializer for nullNode
@@ -256,9 +237,6 @@ public class RedBlackTree {
         nullNode = new RedBlackNode( null );
         nullNode.left = nullNode.right = nullNode;
     }
-
-    private static final int BLACK = 1;    // Black must be 1
-    private static final int RED   = 0;
 
     // Used in insert routine and its helpers
     private static RedBlackNode current;

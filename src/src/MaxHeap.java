@@ -5,19 +5,15 @@
  * This class implements a maximum heap
  */
 public class MaxHeap {
-    private int[] data;
+    private HeapNode[] data;
     private int size;
 
     /**
      * Initialize the heap with the given data. We clone it to make sure the original array is not
      * affected by this class.
      */
-    public MaxHeap(int[] inputArray, int size) {
-        data = inputArray.clone();
+    public MaxHeap(int size) {
         this.size = size;
-        for (int i = (int)Math.floor(size / 2); i >= 0; i--) {
-            maxHeapify(i);
-        }
     }
 
     /**
@@ -39,7 +35,7 @@ public class MaxHeap {
      */
     private int compareChild(int smallest, int child) {
         if (child < size) {
-            return (data[child] < data[smallest]) ? child : smallest;
+            return (data[child].getBooksNum() < data[smallest].getBooksNum()) ? child : smallest;
         }
         return smallest;
     }
@@ -59,13 +55,9 @@ public class MaxHeap {
     }
 
     /**
-     * Return the minimum of the heap, delete it from the heap and fix the heap.
+     * Return the maximum of the heap.
      */
-    public int heapExtractMin() {
-        int min = data[0];
-        data[0] = data[size-1];
-        size--;
-        maxHeapify(0);
-        return min;
+    public int heapGetMax() {
+        return (data[0] != null) ? data[0].getBooksNum() : 0;
     }
 }
