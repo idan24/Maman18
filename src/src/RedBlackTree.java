@@ -42,9 +42,8 @@ public class RedBlackTree {
     /**
      * Insert into the tree.
      * @param item the item to insert.
-     * @throws DuplicateItemException if item is already present.
      */
-    public void insert( Comparable item ) {
+    public boolean insert( Comparable item ) {
         current = parent = grand = header;
         nullNode.element = item;
 
@@ -60,7 +59,7 @@ public class RedBlackTree {
 
         // Insertion fails if already present
         if( current != nullNode )
-            throw new DuplicateItemException( item.toString( ) );
+            return false;
         current = new RedBlackNode( item, nullNode, nullNode );
 
         // Attach to parent
@@ -69,6 +68,8 @@ public class RedBlackTree {
         else
             parent.right = current;
         handleReorient( item );
+
+        return true;
     }
 
     /**
