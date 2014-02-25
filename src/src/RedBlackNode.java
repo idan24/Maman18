@@ -2,6 +2,12 @@
  * Created by Idans on 22/02/14.
  */
 public class RedBlackNode {
+
+    Comparable   element;    // The data in the node
+    RedBlackNode left;       // Left child
+    RedBlackNode right;      // Right child
+    int          color;      // Color
+
     // Constructors
     RedBlackNode( Comparable theElement ) {
         this( theElement, null, null );
@@ -13,9 +19,4 @@ public class RedBlackNode {
         right    = rt;
         color    = Consts.BLACK;
     }
-
-    Comparable   element;    // The data in the node
-    RedBlackNode left;       // Left child
-    RedBlackNode right;      // Right child
-    int          color;      // Color
 }

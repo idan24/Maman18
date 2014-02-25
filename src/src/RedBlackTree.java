@@ -18,6 +18,21 @@
 // Exceptions are thrown by insert if warranted and remove.
 
 public class RedBlackTree {
+
+    private RedBlackNode header;
+    private static RedBlackNode nullNode;
+    static         // Static initializer for nullNode
+    {
+        nullNode = new RedBlackNode( null );
+        nullNode.left = nullNode.right = nullNode;
+    }
+
+    // Used in insert routine and its helpers
+    private static RedBlackNode current;
+    private static RedBlackNode parent;
+    private static RedBlackNode grand;
+    private static RedBlackNode great;
+
     /**
      * Construct the tree.
      */
@@ -229,18 +244,4 @@ public class RedBlackTree {
         k2.left = k1;
         return k2;
     }
-
-    private RedBlackNode header;
-    private static RedBlackNode nullNode;
-    static         // Static initializer for nullNode
-    {
-        nullNode = new RedBlackNode( null );
-        nullNode.left = nullNode.right = nullNode;
-    }
-
-    // Used in insert routine and its helpers
-    private static RedBlackNode current;
-    private static RedBlackNode parent;
-    private static RedBlackNode grand;
-    private static RedBlackNode great;
 }
