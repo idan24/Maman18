@@ -4,15 +4,6 @@
 public class Utils {
 
     /**
-     * Exchanges the values of the two given indexes in the given array.
-     */
-    public static void exchange(HeapNode[] arr, int i, int j) {
-        HeapNode temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    /**
      * Prints to the console the given array up to the given index.
      */
     public static void printArr(int[] inputArray, int n) {
